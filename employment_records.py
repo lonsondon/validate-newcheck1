@@ -28,6 +28,9 @@ class MahendraDB:
         return asdict(self)
 
 
+TeachersDB = MahendraDB
+
+
 def create_employment_record(
     employee_id: int,
     first_name: str,

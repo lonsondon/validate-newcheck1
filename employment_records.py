@@ -29,7 +29,7 @@ class StudentDB:
 
 
 def create_employment_record(
-    employee_id: int,
+    employee_id: str,
     first_name: str,
     last_name: str,
     job_title: str,

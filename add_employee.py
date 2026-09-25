@@ -10,4 +10,3 @@ def add_employee(
     if find_employee(employee.employee_id, records) is not None:
         raise ValueError(f"employee ID {employee.employee_id} already exists")
     return [*records, employee]
-    #comment

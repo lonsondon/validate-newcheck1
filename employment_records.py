@@ -7,7 +7,7 @@ from typing import Any
 
 
 @dataclass(frozen=True)
-class TeachersDB:
+class MahendraDB:
     """A small, serializable employment record for demo and test data."""
 
     employee_id: str
@@ -28,6 +28,9 @@ class TeachersDB:
         return asdict(self)
 
 
+TeachersDB = MahendraDB
+
+
 def create_employment_record(
     employee_id: int,
     first_name: str,
@@ -38,13 +41,13 @@ def create_employment_record(
     salary: int,
     employment_type: str = "Full-time",
     active: bool = True,
-) -> TeachersDB:
+) -> MahendraDB:
     """Create one dummy employment record."""
     date.fromisoformat(start_date)
     if salary < 0:
         raise ValueError("salary must be zero or greater")
 
-    return TeachersDB(
+    return MahendraDB(
         employee_id=employee_id,
         first_name=first_name,
         last_name=last_name,
@@ -57,7 +60,7 @@ def create_employment_record(
     )
 
 
-def generate_dummy_employees() -> list[TeachersDB]:
+def generate_dummy_employees() -> list[MahendraDB]:
     """Return a repeatable set of dummy employee records."""
     return [
         create_employment_record(
@@ -90,23 +93,23 @@ def generate_dummy_employees() -> list[TeachersDB]:
 
 
 def find_employee(
-    employee_id: int, records: list[TeachersDB] | None = None
-) -> TeachersDB | None:
+    employee_id: int, records: list[MahendraDB] | None = None
+) -> MahendraDB | None:
     """Find one employee by ID, returning None when there is no match."""
     records = generate_dummy_employees() if records is None else records
     return next((record for record in records if record.employee_id == employee_id), None)
 
 
 def filter_by_department(
-    department: str, records: list[TeachersDB] | None = None
-) -> list[TeachersDB]:
+    department: str, records: list[MahendraDB] | None = None
+) -> list[MahendraDB]:
     """Return employees in a department, using case-insensitive matching."""
     records = generate_dummy_employees() if records is None else records
     return [record for record in records if record.department.lower() == department.lower()]
 
 
 def export_records_json(
-    records: list[TeachersDB] | None = None, indent: int = 2
+    records: list[MahendraDB] | None = None, indent: int = 2
 ) -> str:
     """Convert employment records to JSON for use by another program or API."""
     records = generate_dummy_employees() if records is None else records

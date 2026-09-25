@@ -9,11 +9,11 @@ def promote_employee(
     employee_id: str,
     new_job_title: str,
     new_salary: str,
-    records: list[EmploymentRecord],
+    records: dict[str, EmploymentRecord],
     new_department: str | None = None,
 ) -> tuple[EmploymentRecord]:
     """Return a new list with an employee's role and salary updated."""
-    employee = find_employee(employee_id, records)
+    employee = find_employee(employee_id, list(records.values()))
     if employee is None:
         raise ValueError(f"employee ID {employee_id} was not found")
     if new_salary < employee.salary:

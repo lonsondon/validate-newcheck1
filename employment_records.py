@@ -37,13 +37,13 @@ def create_employment_record(
     last_name: str,
     job_title: str,
     department: str,
-    start_date: str,
+    end_date: str,
     salary: int,
     employment_type: str = "Full-time",
     active: bool = True,
 ) -> MahendraDB:
     """Create one dummy employment record."""
-    date.fromisoformat(start_date)
+    date.fromisoformat(end_date)
     if salary < 0:
         raise ValueError("salary must be zero or greater")
 
@@ -53,7 +53,7 @@ def create_employment_record(
         last_name=last_name,
         job_title=job_title,
         department=department,
-        start_date=start_date,
+        start_date=end_date,
         salary=salary,
         employment_type=employment_type,
         active=active,

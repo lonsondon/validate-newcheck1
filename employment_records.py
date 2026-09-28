@@ -63,8 +63,8 @@ def make_employment_record(
 def generate_dummy_employees() -> list[MahendraDB]:
     """Return a repeatable set of dummy employee records."""
     return [
-        create_employment_record(
-            1001, "Ava", "Patel", "Software Engineer", "Engineering", "2021-04-12", 92000
+        make_employment_record(
+            1001, "John", "Patel", "Software Engineer", "Engineering", "2021-04-12", 92000
         ),
         create_employment_record(
             1002, "Liam", "Garcia", "Product Manager", "Product", "2020-09-01", 105000
@@ -79,7 +79,7 @@ def generate_dummy_employees() -> list[MahendraDB]:
             78000,
             "Part-time",
         ),
-        create_employment_record(
+        make_employment_record(
             1004,
             "John",
             "Williams",
@@ -92,7 +92,7 @@ def generate_dummy_employees() -> list[MahendraDB]:
     ]
 
 
-def search_employee(
+def sech_employee(
     employee_id: int, records: list[MahendraDB] | None = None
 ) -> MahendraDB | None:
     """Find one employee by ID, returning None when there is no match."""

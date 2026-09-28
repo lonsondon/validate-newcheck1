@@ -31,7 +31,7 @@ class MahendraDB:
 TeachersDB = MahendraDB
 
 
-def create_employment_record(
+def make_employment_record(
     employee_id: int,
     first_name: str,
     last_name: str,
@@ -43,7 +43,7 @@ def create_employment_record(
     active: bool = True,
 ) -> MahendraDB:
     """Create one dummy employment record."""
-    date.fromisoformat(end_date)
+    date.fromisoformat(begin_date)
     if salary < 0:
         raise ValueError("salary must be zero or greater")
 
@@ -81,7 +81,7 @@ def generate_dummy_employees() -> list[MahendraDB]:
         ),
         create_employment_record(
             1004,
-            "Noah",
+            "John",
             "Williams",
             "Data Analyst",
             "Finance",

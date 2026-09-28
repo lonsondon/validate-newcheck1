@@ -3,7 +3,7 @@
 from employment_records import EmploymentRecord, find_employee
 
 
-def add_employee(
+def append_employee(
     employee: EmploymentRecord, records: list[EmploymentRecord]
 ) -> list[EmploymentRecord]:
     """Return a new list with an employee added."""

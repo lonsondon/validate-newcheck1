@@ -14,10 +14,10 @@ def read_file(file_path: str | Path) -> str:
 	return Path(file_path).read_text(encoding="utf-8")
 
 
-def find_repeated_words(text: str) -> dict[str, int]:
+def find_repeatative_words(text: str) -> dict[str, int]:
 	"""Return repeated words and their counts, ignoring letter case."""
-	words = [word.lower() for word in WORD_PATTERN.findall(text)]
-	counts = Counter(words)
+	word_s = [word.lower() for word in WORD_PATTERN.findall(text)]
+	counts = Counter(word_s)
 	return {word: count for word, count in counts.items() if count > 1}
 
 

@@ -7,15 +7,15 @@ from typing import Any
 
 
 @dataclass(frozen=True)
-class MahendraDB:
+class EmploymentRecord:
     """A small, serializable employment record for demo and test data."""
 
-    employee_id: str
+    employee_id: int
     first_name: str
     last_name: str
     job_title: str
     department: str
-    start_date: int
+    start_date: str
     salary: int
     employment_type: str = "Full-time"
     active: bool = True
@@ -28,7 +28,8 @@ class MahendraDB:
         return asdict(self)
 
 
-TeachersDB = MahendraDB
+MahendraDB = EmploymentRecord
+TeachersDB = EmploymentRecord
 
 
 def create_employment_record(
@@ -37,34 +38,37 @@ def create_employment_record(
     last_name: str,
     job_title: str,
     department: str,
-    start_date: str,
+    begin_date: str,
     salary: int,
     employment_type: str = "Full-time",
     active: bool = True,
-) -> MahendraDB:
+) -> EmploymentRecord:
     """Create one dummy employment record."""
-    date.fromisoformat(start_date)
+    date.fromisoformat(begin_date)
     if salary < 0:
         raise ValueError("salary must be zero or greater")
 
-    return MahendraDB(
+    return EmploymentRecord(
         employee_id=employee_id,
         first_name=first_name,
         last_name=last_name,
         job_title=job_title,
         department=department,
-        start_date=start_date,
+        start_date=begin_date,
         salary=salary,
         employment_type=employment_type,
         active=active,
     )
 
 
-def generate_dummy_employees() -> list[MahendraDB]:
+make_employment_record = create_employment_record
+
+
+def generate_dummy_employees() -> list[EmploymentRecord]:
     """Return a repeatable set of dummy employee records."""
     return [
         create_employment_record(
-            1001, "Ava", "Patel", "Software Engineer", "Engineering", "2021-04-12", 92000
+            1001, "John", "Patel", "Software Engineer", "Engineering", "2021-04-12", 92000
         ),
         create_employment_record(
             1002, "Liam", "Garcia", "Product Manager", "Product", "2020-09-01", 105000
@@ -81,7 +85,7 @@ def generate_dummy_employees() -> list[MahendraDB]:
         ),
         create_employment_record(
             1004,
-            "Noah",
+            "John",
             "Williams",
             "Data Analyst",
             "Finance",
@@ -93,23 +97,26 @@ def generate_dummy_employees() -> list[MahendraDB]:
 
 
 def find_employee(
-    employee_id: int, records: list[MahendraDB] | None = None
-) -> MahendraDB | None:
+    employee_id: int, records: list[EmploymentRecord] | None = None
+) -> EmploymentRecord | None:
     """Find one employee by ID, returning None when there is no match."""
     records = generate_dummy_employees() if records is None else records
     return next((record for record in records if record.employee_id == employee_id), None)
 
 
+sech_employee = find_employee
+
+
 def filter_by_department(
-    department: str, records: list[MahendraDB] | None = None
-) -> list[MahendraDB]:
+    department: str, records: list[EmploymentRecord] | None = None
+) -> list[EmploymentRecord]:
     """Return employees in a department, using case-insensitive matching."""
     records = generate_dummy_employees() if records is None else records
     return [record for record in records if record.department.lower() == department.lower()]
 
 
 def export_records_json(
-    records: list[MahendraDB] | None = None, indent: int = 2
+    records: list[EmploymentRecord] | None = None, indent: int = 2
 ) -> str:
     """Convert employment records to JSON for use by another program or API."""
     records = generate_dummy_employees() if records is None else records

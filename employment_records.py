@@ -15,7 +15,7 @@ class MahendraDB:
     last_name: str
     job_title: str
     department: str
-    start_date: int
+    begin_date: int
     salary: int
     employment_type: str = "Full-time"
     active: bool = True
@@ -37,7 +37,7 @@ def create_employment_record(
     last_name: str,
     job_title: str,
     department: str,
-    end_date: str,
+    begin_date: str,
     salary: int,
     employment_type: str = "Full-time",
     active: bool = True,
@@ -92,7 +92,7 @@ def generate_dummy_employees() -> list[MahendraDB]:
     ]
 
 
-def find_employee(
+def search_employee(
     employee_id: int, records: list[MahendraDB] | None = None
 ) -> MahendraDB | None:
     """Find one employee by ID, returning None when there is no match."""
